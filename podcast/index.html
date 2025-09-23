@@ -1948,7 +1948,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 			<svg xmlns="http://www.w3.org/2000/svg" id="a3764f6b-d60e-4c82-b635-15a2a285578b" data-name="Layer 1" width="19.373" height="18.4536" viewBox="0 0 19.373 18.4536"><polygon points="19.373 1.454 18 0 9.687 7.852 1.373 0 0 1.454 8.23 9.227 0 17 1.373 18.454 9.687 10.602 18 18.454 19.373 17 11.143 9.227 19.373 1.454"/></svg>
 		</a></li></ul>			</nav>
 					<div class="elementor-menu-toggle" role="button" tabindex="0" aria-label="Menu Toggle" aria-expanded="false">
-			<i style="display: none !important; " aria-hidden="true" role="presentation" class="elementor-menu-toggle__icon--open eicon-menu-bar"></i><i aria-hidden="true" role="presentation" class="elementor-menu-toggle__icon--close eicon-close"></i>		</div>
+			<i aria-hidden="true" role="presentation" class="elementor-menu-toggle__icon--open eicon-menu-bar"></i><i aria-hidden="true" role="presentation" class="elementor-menu-toggle__icon--close eicon-close"></i>		</div>
 					<nav class="elementor-nav-menu--dropdown elementor-nav-menu__container" aria-hidden="true">
 				<ul id="menu-2-343d53fc" class="elementor-nav-menu"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-293648"><a href="../on-demand-courses/index.html" class="elementor-item" tabindex="-1"style="display: none !important; ">Your Career</a>
 </li>
@@ -3601,7 +3601,88 @@ var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/simonsinek.com\/wp-admin\
 if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
 images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
 if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="../wp-content/plugins/wp-rocket/assets/js/lazyload/17.8.3/lazyload.min.js"></script>
-<script>(()=>{class RocketElementorPreload{constructor(){this.deviceMode=document.createElement("span"),this.deviceMode.id="elementor-device-mode-wpr",this.deviceMode.setAttribute("class","elementor-screen-only"),document.body.appendChild(this.deviceMode)}t(){let t=getComputedStyle(this.deviceMode,":after").content.replace(/"/g,"");this.animationSettingKeys=this.i(t),document.querySelectorAll(".elementor-invisible[data-settings]").forEach((t=>{const e=t.getBoundingClientRect();if(e.bottom>=0&&e.top<=window.innerHeight)try{this.o(t)}catch(t){}}))}o(t){const e=JSON.parse(t.dataset.settings),i=e.m||e.animation_delay||0,n=e[this.animationSettingKeys.find((t=>e[t]))];if("none"===n)return void t.classList.remove("elementor-invisible");t.classList.remove(n),this.currentAnimation&&t.classList.remove(this.currentAnimation),this.currentAnimation=n;let o=setTimeout((()=>{t.classList.remove("elementor-invisible"),t.classList.add("animated",n),this.l(t,e)}),i);window.addEventListener("rocket-startLoading",(function(){clearTimeout(o)}))}i(t="mobile"){const e=[""];switch(t){case"mobile":e.unshift("_mobile");case"tablet":e.unshift("_tablet");case"desktop":e.unshift("_desktop")}const i=[];return["animation","_animation"].forEach((t=>{e.forEach((e=>{i.push(t+e)}))})),i}l(t,e){this.i().forEach((t=>delete e[t])),t.dataset.settings=JSON.stringify(e)}static run(){const t=new RocketElementorPreload;requestAnimationFrame(t.t.bind(t))}}document.addEventListener("DOMContentLoaded",RocketElementorPreload.run)})();</script></body>
+<script>(()=>{class RocketElementorPreload{constructor(){this.deviceMode=document.createElement("span"),this.deviceMode.id="elementor-device-mode-wpr",this.deviceMode.setAttribute("class","elementor-screen-only"),document.body.appendChild(this.deviceMode)}t(){let t=getComputedStyle(this.deviceMode,":after").content.replace(/"/g,"");this.animationSettingKeys=this.i(t),document.querySelectorAll(".elementor-invisible[data-settings]").forEach((t=>{const e=t.getBoundingClientRect();if(e.bottom>=0&&e.top<=window.innerHeight)try{this.o(t)}catch(t){}}))}o(t){const e=JSON.parse(t.dataset.settings),i=e.m||e.animation_delay||0,n=e[this.animationSettingKeys.find((t=>e[t]))];if("none"===n)return void t.classList.remove("elementor-invisible");t.classList.remove(n),this.currentAnimation&&t.classList.remove(this.currentAnimation),this.currentAnimation=n;let o=setTimeout((()=>{t.classList.remove("elementor-invisible"),t.classList.add("animated",n),this.l(t,e)}),i);window.addEventListener("rocket-startLoading",(function(){clearTimeout(o)}))}i(t="mobile"){const e=[""];switch(t){case"mobile":e.unshift("_mobile");case"tablet":e.unshift("_tablet");case"desktop":e.unshift("_desktop")}const i=[];return["animation","_animation"].forEach((t=>{e.forEach((e=>{i.push(t+e)}))})),i}l(t,e){this.i().forEach((t=>delete e[t])),t.dataset.settings=JSON.stringify(e)}static run(){const t=new RocketElementorPreload;requestAnimationFrame(t.t.bind(t))}}document.addEventListener("DOMContentLoaded",RocketElementorPreload.run)})();</script>
+
+
+<script>
+(function(){
+  'use strict';
+
+  const toggleSelector = ".elementor-menu-toggle";
+  const drawerSelector = ".elementor-nav-menu--dropdown";
+  const closeSelector  = ".close-btn";  // your close icon <li class="close-btn">
+
+function openDrawer(drawer, toggle){
+    toggle.classList.add("elementor-active");
+    toggle.setAttribute("aria-expanded","true");
+    drawer.setAttribute("aria-hidden","false");
+    
+    // Force show at very top (no margin)
+    drawer.style.setProperty("display","block","important");
+    drawer.style.setProperty("opacity","1","important");
+    drawer.style.setProperty("visibility","visible","important");
+    drawer.style.setProperty("width","100vw","important");
+    drawer.style.setProperty("left","0","important");
+    drawer.style.setProperty("top","0","important"); // <--- THIS LINE FIXES THE MARGIN
+    drawer.querySelectorAll("a").forEach(a => a.setAttribute("tabindex","0"));
+}
+
+
+  function closeDrawer(drawer, toggle){
+    toggle.classList.remove("elementor-active");
+    toggle.setAttribute("aria-expanded","false");
+    drawer.setAttribute("aria-hidden","true");
+    // hide
+    drawer.style.setProperty("display","none","important");
+    drawer.style.setProperty("opacity","0","important");
+    drawer.style.removeProperty("visibility");
+    drawer.querySelectorAll("a").forEach(a => a.setAttribute("tabindex","-1"));
+  }
+
+  function toggleDrawer(drawer, toggle){
+    if (toggle.classList.contains("elementor-active")) closeDrawer(drawer, toggle);
+    else openDrawer(drawer, toggle);
+  }
+
+  document.addEventListener("click", function(e){
+    const toggle = document.querySelector(toggleSelector);
+    const drawer = document.querySelector(drawerSelector);
+    if(!toggle || !drawer) return;
+
+    // click on toggle
+    if(e.target.closest(toggleSelector)){
+      e.preventDefault();
+      toggleDrawer(drawer, toggle);
+      return;
+    }
+
+    // click on close
+    if(e.target.closest(closeSelector)){
+      e.preventDefault();
+      closeDrawer(drawer, toggle);
+      return;
+    }
+
+    // click outside
+    if(toggle.classList.contains("elementor-active") &&
+      !drawer.contains(e.target) && !toggle.contains(e.target)){
+      closeDrawer(drawer, toggle);
+    }
+  });
+
+  // ESC to close
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){
+      const toggle = document.querySelector(toggleSelector);
+      const drawer = document.querySelector(drawerSelector);
+      if(toggle && drawer && toggle.classList.contains("elementor-active")){
+        closeDrawer(drawer, toggle);
+      }
+    }
+  });
+
+})();
+</script></body>
 
 
 </html>

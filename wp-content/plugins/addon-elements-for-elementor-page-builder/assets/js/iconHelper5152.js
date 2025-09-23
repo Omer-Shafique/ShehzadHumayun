@@ -37,7 +37,7 @@ window.renderIconHtml = function(view,elementor,sett,control_name, wClass = '', 
         view.addRenderAttribute('panel-icon-'+ index, 'class', icon_class);
         if(sett[control_name+'_graphic_type'] == 'lottie' ){
             if(lottie_data.url != undefined){
-                iconHtml = `<span ${view.getRenderAttributeString( 'panel-icon-'+ index )}></span>`;    
+                iconHtml = ``;    
             }
         }else{
             if(sett[control_name+'_graphic_type'] === 'icon'){

@@ -1209,7 +1209,7 @@ jQuery( function( $ ) {
         var parent_element = $(this).parents('.add-to-cart-section');
         
         var button = $(this);
-        // https://stgsimonsinek.wpengine.com/checkout/?add-to-cart=346445&test=121212&quantity=1
+        // https://stg/.wpengine.com/checkout/?add-to-cart=346445&test=121212&quantity=1
         var full_url = $(this).attr('href');
         var params = new URLSearchParams(full_url.split('?')[1]);
         var product_id = params.get('add-to-cart');

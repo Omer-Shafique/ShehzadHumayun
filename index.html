@@ -3696,47 +3696,89 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
 
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    // Only show these classes
-    const showSelectors = [
-        ".learning-dashboard",
-        ".login-btn",
-        ".header-notice-right"
-        // Add more classes if needed
-    ];
+(function(){
+  'use strict';
 
-    // Show only selected elements
-    showSelectors.forEach(selector => {
-        document.querySelectorAll(selector).forEach(el => {
-            el.style.display = "flex";
-            el.style.removeProperty("display");
-        });
-    });
+  const toggleSelector = ".elementor-menu-toggle";
+  const drawerSelector = ".elementor-nav-menu--dropdown";
+  const closeSelector  = ".close-btn"; // Close icon li
 
-    // Fix menu items hidden with inline !important style only if needed
-    const menuItems = document.querySelectorAll(".menu-item a.elementor-item[data-show='true']");
-    menuItems.forEach(item => {
-        item.style.display = "block";
-        item.style.removeProperty("display");
-    });
+  function openDrawer(drawer, toggle){
+    toggle.classList.add("elementor-active");
+    toggle.setAttribute("aria-expanded","true");
+    drawer.setAttribute("aria-hidden","false");
 
-    // Toggle submenu for account icon
-    const accountIcons = document.querySelectorAll(".account");
-    accountIcons.forEach(account => {
-        account.addEventListener("click", function (e) {
-            e.stopPropagation();
-            this.querySelector(".accountSubmenu").classList.toggle("active");
-        });
-    });
+    // Show drawer at full width, no overlay
+    drawer.style.setProperty("display","block","important");
+    drawer.style.setProperty("opacity","1","important");
+    drawer.style.setProperty("visibility","visible","important");
+    drawer.style.setProperty("width","100vw","important");
+    drawer.style.setProperty("left","0","important");
+    drawer.style.setProperty("top","0","important");
+    drawer.style.setProperty("background","white","important"); // remove dark bg if Elementor sets one
+    drawer.querySelectorAll("a").forEach(a => a.setAttribute("tabindex","0"));
 
-    // Close submenu if clicked outside
-    document.addEventListener("click", function () {
-        document.querySelectorAll(".accountSubmenu").forEach(menu => {
-            menu.classList.remove("active");
-        });
-    });
-});
+    // Remove Elementor overlay if it exists
+    const overlay = document.querySelector(".elementor-menu-toggle__overlay");
+    if (overlay) overlay.remove();
+  }
+
+  function closeDrawer(drawer, toggle){
+    toggle.classList.remove("elementor-active");
+    toggle.setAttribute("aria-expanded","false");
+    drawer.setAttribute("aria-hidden","true");
+
+    // Hide drawer
+    drawer.style.setProperty("display","none","important");
+    drawer.style.setProperty("opacity","0","important");
+    drawer.style.removeProperty("visibility");
+    drawer.querySelectorAll("a").forEach(a => a.setAttribute("tabindex","-1"));
+  }
+
+  function toggleDrawer(drawer, toggle){
+    if (toggle.classList.contains("elementor-active")) closeDrawer(drawer, toggle);
+    else openDrawer(drawer, toggle);
+  }
+
+  document.addEventListener("click", function(e){
+    const toggle = document.querySelector(toggleSelector);
+    const drawer = document.querySelector(drawerSelector);
+    if(!toggle || !drawer) return;
+
+    if(e.target.closest(toggleSelector)){ // Toggle click
+      e.preventDefault();
+      toggleDrawer(drawer, toggle);
+      return;
+    }
+
+    if(e.target.closest(closeSelector)){ // Close button click
+      e.preventDefault();
+      closeDrawer(drawer, toggle);
+      return;
+    }
+
+    // Click outside
+    if(toggle.classList.contains("elementor-active") &&
+       !drawer.contains(e.target) && !toggle.contains(e.target)){
+      closeDrawer(drawer, toggle);
+    }
+  });
+
+  // ESC to close
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){
+      const toggle = document.querySelector(toggleSelector);
+      const drawer = document.querySelector(drawerSelector);
+      if(toggle && drawer && toggle.classList.contains("elementor-active")){
+        closeDrawer(drawer, toggle);
+      }
+    }
+  });
+
+})();
 </script>
+
+
 
 
 

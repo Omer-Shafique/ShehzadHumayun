@@ -2943,6 +2943,40 @@ function openDrawer(drawer, toggle){
 </script>
 
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const faqTitles = document.querySelectorAll(".elementor-tab-title");
+
+  faqTitles.forEach(title => {
+    title.addEventListener("click", function () {
+      const contentId = this.getAttribute("aria-controls");
+      const content = document.getElementById(contentId);
+
+      const isOpen = this.classList.contains("active");
+
+      // Close all
+      faqTitles.forEach(t => {
+        t.classList.remove("active");
+        t.setAttribute("aria-expanded", "false");
+        const c = document.getElementById(t.getAttribute("aria-controls"));
+        if (c) c.style.display = "none";
+      });
+
+      // Toggle current
+      if (!isOpen) {
+        this.classList.add("active");
+        this.setAttribute("aria-expanded", "true");
+        if (content) content.style.display = "block";
+      }
+    });
+  });
+
+  // Hide all at start
+  document.querySelectorAll(".elementor-tab-content").forEach(content => {
+    content.style.display = "none";
+  });
+});
+</script>
 
 
 </body>
